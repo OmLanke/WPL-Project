@@ -1,0 +1,39 @@
+body {
+    margin: 20px;
+}
+
+nav {
+    border: 1px;
+    border-style: solid;
+    border-radius: 10px;
+    border-color: #07bed6;
+    display: flex;
+    gap: 20px;
+    align-items: center;
+    position: sticky;
+}
+
+
+nav img {
+    width: 50px;
+    border-radius: 999px;
+}
+
+#logout {
+    flex-grow: 1;
+    padding-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
+}
+
+#logout img {
+    width: 20px;
+}
+
+form div {
+    margin-top: 5px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
