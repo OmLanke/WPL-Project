@@ -8,6 +8,32 @@
     <meta http-equiv="refresh" content="5;url=/student/" />
     <title>Home</title>
     <style>
+        body, html {
+      margin: 0;
+      padding: 0;
+   
+      box-sizing: border-box;
+      
+      font-family: Arial, sans-serif;
+      background-color: #f5f5f5; 
+      position: relative;
+    }
+    .parent-container {
+        display: flex;
+        flex-direction: row;
+        height: 100%;
+        width: 100%;   
+        align-items: center;
+        gap: 15px;
+        
+
+    }
+    .ai-suggestions{
+        border-width: 1px;
+        border-style: solid;
+        border-radius: 10%;
+        padding: 10px;
+    }
         #modal {
             display: none;
             border: 1px solid #CCC;
@@ -24,13 +50,16 @@
     <iframe src="navbar.html" height="120px" width="100%" style="border:none;"></iframe>
     
     <br>
+    <div class="parent-container">
+
+  
     <table border="1" style="width:100%">
         <tr>
             <td>Job Title</td>
             <td>Role</td>
             <td>Photo</td>
             <td><a href="#modal"><button>apply</button></a></td>
-            <td rowspan="100%">AI summary of your resume</td>
+
 
         </tr>
         <tr>
@@ -99,6 +128,12 @@
         </tr>
 
     </table>
+    <div class="ai-suggestions">
+        <h3>AI Suggestions</h3>
+        <br><hr><br>
+
+    </div>
+</div>
     <br><br>
     <div id="modal"> You have
         successfully applied </div>
