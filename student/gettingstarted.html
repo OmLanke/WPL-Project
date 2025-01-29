@@ -5,43 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Enter Basic Details</title>
-    <!-- <style>
-    /* General reset */
+    <style>
     body, html {
       margin: 0;
       padding: 0;
+   
       box-sizing: border-box;
-      height: 100%; /* Ensure full height for centering */
+      height: 100%;
       font-family: Arial, sans-serif;
-      background-color: #f5f5f5; /* Light gray background */
+      background-color: #f5f5f5; 
       position: relative;
     }
 
+    .parent-container{
+      display: flex;
+      position: absolute;
+      
+      flex-direction: column;
+      align-items: center;  
+    }
 
-    /* Center text styling */
     .center-text {
       display: flex;
-      justify-content: center;
+      width: 100vw;
       align-items: center;
-      height: 100vh;
+      padding: 10px;
+      padding-bottom: 30px;
       font-size: 32px;
       font-weight: bold;
       color: #333;
       text-align: center;
     }
 
-    /* Form container */
+
     .form-container {
-      margin: 50px auto;
+      position: relative;
       padding: 20px;
       background-color: #fff;
       border-radius: 8px;
+      align-items: center;
       width: 80%;
       max-width: 600px;
       box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
     }
 
-    /* Title for sections */
+
     .section-title {
       font-size: 24px;
       font-weight: bold;
@@ -49,7 +57,7 @@
       color: #333;
     }
 
-    /* Group of inputs */
+
     .input-group {
       display: grid;
       grid-template-columns: 1fr 1fr 1fr;
@@ -57,15 +65,14 @@
       margin-bottom: 20px;
     }
 
-    /* Input fields in the same line */
+
     .input-line {
       display: grid;
       grid-template-columns: 1fr 2fr;
       gap: 10px;
-      margin-bottom: 40px; /* Adds two lines of space */
+      margin-bottom: 40px; 
     }
 
-    /* Label styling */
     label {
       font-size: 14px;
       font-weight: normal;
@@ -74,7 +81,6 @@
       display: block;
     }
 
-    /* Input field styling */
     input {
       padding: 8px;
       font-size: 16px;
@@ -83,7 +89,6 @@
       width: 100%;
     }
 
-    /* Drag and drop area */
     .drag-drop {
       margin-top: 20px;
       padding: 20px;
@@ -96,7 +101,6 @@
       cursor: pointer;
     }
 
-    /* Button styling */
     button {
       padding: 12px 24px;
       font-size: 16px;
@@ -113,19 +117,19 @@
     button:hover {
       background-color: #0056b3;
     }
-  </style> -->
+  </style>
 </head>
 
 <body>
     <iframe src="navbar.html" height="40" width="100%" style="border:none;"></iframe>
     <hr>
     <br><br>
+    <div class="parent-container">
     <div class="center-text">Enter your basic details</div>
 
     <div class="form-container">
         <div class="section-title">Personal Info:</div>
 
-        <!-- Name inputs (First, Middle, Last) -->
         <div class="input-group">
             <div>
                 <label for="first-name">First Name:</label>
@@ -141,7 +145,6 @@
             </div>
         </div>
 
-        <!-- Phone and Address inputs in the same line -->
         <div class="input-line">
             <div>
                 <label for="phone">Phone:</label>
@@ -153,7 +156,6 @@
             </div>
         </div>
 
-        <!-- Education Info -->
         <div class="section-title">Education Info:</div>
 
         <div class="input-group">
@@ -183,6 +185,7 @@
 
         <button type="submit">Submit</button>
     </div>
+  </div>
 </body>
 
 </html>

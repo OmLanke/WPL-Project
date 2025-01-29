@@ -4,69 +4,47 @@ html {
     padding: 0;
     box-sizing: border-box;
     height: 100%;
-    /* Ensure full height for centering */
     font-family: Arial, sans-serif;
 }
 
-/* Center the container */
 .container {
     display: flex;
     flex-direction: column;
-    /* Arrange items in a column */
     align-items: center;
-    /* Center items horizontally */
     justify-content: center;
-    /* Center items vertically */
     height: 100vh;
-    /* Full viewport height */
     background-color: #f5f5f5;
-    /* Light gray background */
 }
 
-/* Logo styling */
 .logo img {
     width: 150px;
-    /* Adjust size as needed */
     height: 150px;
-    /* Same value for a perfect circle */
     object-fit: cover;
-    /* Maintain aspect ratio */
     border-radius: 50%;
-    /* Make the logo circular */
     border: 3px solid #07bed6;
-    /* Optional: Border around the logo */
 }
 
-/* Title styling */
 .title {
     margin-top: 20px;
-    /* Space between the logo and the title */
     font-size: 24px;
     font-weight: bold;
     color: #333;
-    /* Dark gray text color */
     text-align: center;
-    /* Center the text */
 }
 
-/* Sign-in button styling */
 .sign-in-button {
     margin-top: 20px;
-    /* Space between the title and the button */
     padding: 10px 20px;
     font-size: 18px;
     color: #fff;
     background-color: #07bed6;
-    /* Blue color */
     border: none;
     border-radius: 5px;
     cursor: pointer;
     box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-    /* Optional: Shadow effect */
     transition: background-color 0.3s ease;
 }
 
 .sign-in-button:hover {
     background-color: #0056b3;
-    /* Darker blue on hover */
 }
