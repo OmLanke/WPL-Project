@@ -27,7 +27,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->fetch();
 
         if (password_verify($password, $hashed_password)) {
-            $_SESSION["user_id"] = $id;
+            $_SESSION["adminID"] = $id;
             header("Location: index.php"); // redirect to home
             exit();
         } else {

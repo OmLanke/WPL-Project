@@ -1,5 +1,41 @@
 <?php
-$activePage = basename($_SERVER["PHP_SELF"]); ?>
+session_start();
+
+$studentID = $_SESSION["studentID"];
+
+if (!isset($studentID)) {
+    header("Location: login.php"); // redirect to login
+    exit();
+}
+
+$host = "localhost";
+$username = "root";
+$password = "";
+$database = "placement";
+$conn = new mysqli($host, $username, $password, $database);
+
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+
+$stmt = $conn->prepare("SELECT name FROM student WHERE studentID = ?");
+$stmt->bind_param("s", $studentID);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    $stmt->bind_result($name);
+    $stmt->fetch();
+} else {
+    $error = "SVV ID not found.";
+    header("Location: login.php"); // redirect to login
+    exit();
+}
+
+$stmt->close();
+
+$conn->close();
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -16,8 +52,10 @@ $activePage = basename($_SERVER["PHP_SELF"]); ?>
 
     <?php include "includes/navbar.php"; ?>
 
-    <hr>
-    <br><br>
+    <hr/>
+    <br/>
+    <h1>Welcome, <?php echo $name; ?></h1>
+    <br/>
 
     <table border="1">
         <tr>
