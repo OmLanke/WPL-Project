@@ -4,7 +4,7 @@ session_start();
 $studentID = $_SESSION["studentID"];
 
 if (!isset($studentID)) {
-    header("Location: login.php"); // redirect to login
+    header("Location: login.php"); // haale dil tujho yeh chahta dil agar yeh bol paata yah khudda tujhko hi chahta naa
     exit();
 }
 
