@@ -1,4 +1,15 @@
-<!doctype html>
+<?php
+if (isset($_COOKIE["userType"])) {
+    if ($_COOKIE["userType"] == "student") {
+        header("Location: student/index.php");
+        exit();
+    } elseif ($_COOKIE["userType"] == "admin") {
+        header("Location: admin/index.php");
+        exit();
+    }
+} ?>
+
+<!DOCTYPE html>
 <html lang="en">
     <head>
         <meta charset="UTF-8" />

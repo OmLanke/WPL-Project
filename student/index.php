@@ -1,10 +1,13 @@
 <?php
 session_start();
 
+setcookie("userType", "student", time() + 3600, "/");
+
 $studentID = $_SESSION["studentID"];
 
 if (!isset($studentID)) {
-    header("Location: login.php"); // haale dil tujho yeh chahta dil agar yeh bol paata yah khudda tujhko hi chahta naa
+    header("Location: login.php");
+    setcookie("userType", "", time() - 3600, "/");
     exit();
 }
 

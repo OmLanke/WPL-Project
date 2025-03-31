@@ -59,7 +59,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if ($stmt->execute()) {
                 $_SESSION["studentID"] = $conn->insert_id;
-                header("Location: index.php");
+                header("Location: ./");
                 exit();
             } else {
                 $error = "MySQL Error: " . $stmt->error;

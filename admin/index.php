@@ -1,6 +1,16 @@
 <?php
 session_start();
 
+setcookie("userType", "admin", time() + 3600, "/");
+
+$adminID = $_SESSION["adminID"];
+
+if (!isset($adminID)) {
+    header("Location: login.php");
+    setcookie("userType", "", time() - 3600, "/");
+    exit();
+}
+
 $host = "localhost";
 $username = "root";
 $password = "";
@@ -9,6 +19,20 @@ $conn = new mysqli($host, $username, $password, $database);
 
 if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
+}
+
+$stmt = $conn->prepare("SELECT name FROM admin WHERE adminID = ?");
+$stmt->bind_param("s", $adminID);
+$stmt->execute();
+$stmt->store_result();
+
+if ($stmt->num_rows > 0) {
+    $stmt->bind_result($name);
+    $stmt->fetch();
+} else {
+    $error = "SVV ID not found.";
+    header("Location: login.php"); // redirect to login
+    exit();
 }
 ?>
 
@@ -25,8 +49,10 @@ if ($conn->connect_error) {
 <body>
     <?php include "includes/navbar.php"; ?> <!-- Include the navbar -->
 
-    <hr>
-    <br><br>
+    <hr/>
+    <br/>
+    <h1>Welcome, <?php echo $name; ?></h1>
+    <br/>
 
     <table>
         <thead>

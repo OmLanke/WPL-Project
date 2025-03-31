@@ -65,7 +65,7 @@ switch ($activePage) {
             ">Getting Started</a>";
         ?>
         <div id="logout">
-            <a href="../index.html">
+            <a href="../logout.php">
                 <img src="https://cdn3.iconfinder.com/data/icons/ui-actions-solid/16/logout-arrow-right-exit-1024.png" alt="Logout">
             </a>
         </div>
