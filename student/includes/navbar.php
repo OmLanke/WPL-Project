@@ -7,8 +7,8 @@ switch ($activePage) {
     case "index.php":
         $home = ' class="active"';
         break;
-    case "gettingstarted.php":
-        $gettingStarted = ' class="active"';
+    case "applications.php":
+        $applicationsActive = ' class="active"';
         break;
     default:
         break;
@@ -60,9 +60,7 @@ switch ($activePage) {
     <nav>
         <?php
         echo '<a href="./" target="_parent"' . $home . ">Home</a>";
-        echo '<a href="gettingstarted.php" target="_parent"' .
-            $gettingStarted .
-            ">Getting Started</a>";
+        echo '<a href="applications.php" target="_parent"' . $applicationsActive . ">My Applications</a>";
         ?>
         <div id="logout">
             <a href="../logout.php">
