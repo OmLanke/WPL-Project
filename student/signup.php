@@ -41,13 +41,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // Validate file size (5MB max)
             if($file_size <= 5000000) {
                 $resume_new_name = $svvid . '_resume_' . time() . '.' . $file_ext;
-                $upload_dir = '../uploads/resumes/';
+                // Use absolute path to ensure upload directory is correctly located
+                $upload_dir = $_SERVER['DOCUMENT_ROOT'] . '/placement/uploads/resumes/';
+                // Check if directory exists, create if it doesn't
+                if (!file_exists($upload_dir)) {
+                    mkdir($upload_dir, 0755, true);
+                }
                 $resume_path = $upload_dir . $resume_new_name;
                 
                 if(move_uploaded_file($file_tmp, $resume_path)) {
+                    // Store only the relative path in the database
                     $resume_path = 'uploads/resumes/' . $resume_new_name;
                 } else {
-                    $upload_error = "Failed to upload resume. Please try again.";
+                    $upload_error = "Failed to upload resume. Please try again. Error: " . error_get_last()['message'];
                 }
             } else {
                 $upload_error = "Resume file too large. Maximum size is 5MB.";
