@@ -11,6 +11,26 @@ if ($conn->connect_error) {
     die("Connection failed: " . $conn->connect_error);
 }
 
+// Fetch branch options from the database
+$branch_query = "SELECT branch FROM branch ORDER BY branch";
+$branch_result = $conn->query($branch_query);
+$branches = [];
+if ($branch_result && $branch_result->num_rows > 0) {
+    while ($row = $branch_result->fetch_assoc()) {
+        $branches[] = $row['branch'];
+    }
+}
+
+// Fetch gender options from the database
+$gender_query = "SELECT gender FROM gender ORDER BY gender";
+$gender_result = $conn->query($gender_query);
+$genders = [];
+if ($gender_result && $gender_result->num_rows > 0) {
+    while ($row = $gender_result->fetch_assoc()) {
+        $genders[] = $row['gender'];
+    }
+}
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $svvid = $_POST["svvid"];
     $password = $_POST["password"];
@@ -122,47 +142,152 @@ $conn->close();
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="view-transition" content="same-origin">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | SkillBridge</title>
-    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="signup.css">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
     <style>
-        .glass-card {
-            width: 380px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 30px;
+        /* Additional styles specific to signup page */
+        body, html {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            height: 100%;
+            font-family: "Poppins", sans-serif;
+            background: linear-gradient(135deg, #0072ff, #00c6ff);
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #fff;
+            overflow: hidden; /* Changed from overflow-x to prevent all scrollbars */
+        }
+        
+        .container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 10px;
+            height: 100vh; /* Use height instead of min-height */
+            overflow-y: auto; /* Allow scrolling only in the container if needed */
+            overflow-x: hidden;
+        }
+        
+        .signup-card {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border-radius: 16px;
+            width: 100%;
+            max-width: 800px;
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            animation: fadeIn 0.8s ease-in-out;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            padding: 20px;
+            margin: 0 auto; /* Simplified margin */
+        }
+        
+        .form-header {
+            display: flex;
+            align-items: center;
+            margin-bottom: 15px;
+        }
+        
+        .logo {
+            margin-right: 15px;
+            flex-shrink: 0;
+        }
+        
+        .logo img {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+        
+        .title {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+            color: #fff;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+        
+        .signup-form {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 30px; /* Increased from 12px to 16px for better spacing */
+            text-align: left;
+        }
+        
+        .form-group {
+            position: relative;
+            margin-bottom: 4px; /* Add small margin to prevent inputs from touching */
+        }
+        
+        .form-group.full-width {
+            grid-column: span 3;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 3px;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        
+        input, select {
+            width: 100%;
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            border-radius: 6px;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+            font-size: 13px;
+            transition: all 0.3s ease;
+        }
+        
+        input:focus, select:focus {
+            background: rgba(255, 255, 255, 0.25);
+            box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+            outline: none;
+        }
+        
+        input::placeholder, select::placeholder {
+            color: rgba(255, 255, 255, 0.7);
         }
         
         select {
-            width: calc(100% - 24px);
-            padding: 12px;
-            margin: 10px auto;
-            display: block;
-            border: none;
-            border-radius: 25px;
-            outline: none;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            font-size: 16px;
-            text-align-last: center;
-            cursor: pointer;
             appearance: none;
-            font-family: "Poppins", sans-serif;
+            background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='16' height='16' fill='white' viewBox='0 0 16 16'%3E%3Cpath d='M7.247 11.14 2.451 5.658C1.885 5.013 2.345 4 3.204 4h9.592a1 1 0 0 1 .753 1.659l-4.796 5.48a1 1 0 0 1-1.506 0z'/%3E%3C/svg%3E");
+            background-repeat: no-repeat;
+            background-position: calc(100% - 12px) center;
+            padding-right: 30px;
         }
         
         select option {
-            background: #0072ff;
+            background-color: #0072ff;
             color: #fff;
-            font-family: "Poppins", sans-serif;
         }
         
         .file-upload {
             position: relative;
-            display: inline-block;
-            width: calc(100% - 24px);
-            margin: 10px auto;
+            display: flex;
+            align-items: center;
+            padding: 8px 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            border: 1px dashed rgba(255, 255, 255, 0.3);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .file-upload:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: rgba(255, 255, 255, 0.5);
         }
         
         .file-upload-input {
@@ -176,138 +301,292 @@ $conn->close();
             z-index: 2;
         }
         
-        .file-upload-button {
-            display: inline-block;
-            width: 100%;
-            padding: 12px;
-            background: rgba(255, 255, 255, 0.2);
-            color: #fff;
-            border: none;
-            border-radius: 25px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-family: "Poppins", sans-serif;
+        .file-icon {
+            font-size: 18px;
+            margin-right: 8px;
+            flex-shrink: 0;
         }
         
-        .file-upload:hover .file-upload-button {
-            background: rgba(255, 255, 255, 0.3);
+        .file-label-container {
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+        }
+        
+        .file-label {
+            font-size: 13px;
+            font-weight: 500;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
         }
         
         .file-name {
-            margin-top: 5px;
-            font-size: 12px;
-            color: #fff;
-            text-align: center;
+            font-size: 11px;
+            color: rgba(255, 255, 255, 0.8);
+            white-space: nowrap;
             overflow: hidden;
             text-overflow: ellipsis;
-            white-space: nowrap;
+        }
+        
+        .sign-up-button {
+            grid-column: span 3;
+            padding: 10px;
+            font-size: 15px;
+            font-weight: 600;
+            background: linear-gradient(to right, #ff416c, #ff4b2b);
+            color: #fff;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3);
+            margin-top: 12px; /* Increased margin for better spacing */
+        }
+        
+        .sign-up-button:hover {
+            background: linear-gradient(to right, #ff4b2b, #ff416c);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 15px rgba(255, 75, 43, 0.4);
         }
         
         .error {
+            grid-column: span 3;
             color: #ff6b6b;
-            margin-top: 10px;
-            font-size: 14px;
             background: rgba(255, 107, 107, 0.1);
-            padding: 10px;
-            border-radius: 10px;
+            padding: 8px 10px;
+            border-radius: 6px;
             border-left: 3px solid #ff6b6b;
+            font-size: 13px;
+            text-align: left;
+            margin: 6px 0;
         }
         
-        /* Custom scrollbar */
-        .glass-card::-webkit-scrollbar {
-            width: 8px;
+        .signup-text {
+            grid-column: span 3;
+            margin-top: 12px;
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.9);
+            text-align: center;
         }
         
-        .glass-card::-webkit-scrollbar-track {
-            background: rgba(255, 255, 255, 0.1);
-            border-radius: 10px;
+        .signup-text a {
+            color: #ffdf00;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
         }
         
-        .glass-card::-webkit-scrollbar-thumb {
-            background: rgba(255, 255, 255, 0.3);
-            border-radius: 10px;
+        .signup-text a:hover {
+            color: #fff;
+            text-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
         }
         
-        .glass-card::-webkit-scrollbar-thumb:hover {
-            background: rgba(255, 255, 255, 0.5);
+        /* Animations */
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(-10px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        /* Responsive styles */
+        @media (max-width: 768px) {
+            .signup-form {
+                grid-template-columns: repeat(2, 1fr);
+                gap: 18px; /* Slightly larger gap on medium screens */
+            }
+            
+            .form-group.full-width {
+                grid-column: span 2;
+            }
+            
+            .sign-up-button, .error, .signup-text {
+                grid-column: span 2;
+            }
         }
         
         @media (max-width: 480px) {
-            .glass-card {
-                width: 90%;
-                padding: 20px;
+            .signup-form {
+                grid-template-columns: 1fr;
+                gap: 14px; /* Adjusted gap for mobile screens */
+            }
+            
+            .form-group.full-width {
+                grid-column: span 1;
+            }
+            
+            .sign-up-button, .error, .signup-text {
+                grid-column: span 1;
+            }
+            
+            .signup-card {
+                padding: 15px;
+                margin: 5px;
+            }
+            
+            .form-header {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .logo {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .title {
+                text-align: center;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="glass-card">
-            <div class="logo">
-                <img src="https://static.vecteezy.com/system/resources/previews/012/892/296/non_2x/people-finder-logo-magnifying-glass-logo-free-vector.jpg" alt="Logo">
-            </div>
-            <div class="title">Create an Account</div>
-            <form method="POST" action="" enctype="multipart/form-data">
-                <input type="text" placeholder="SVV ID" name="svvid" required>
-
-                <input type="text" placeholder="Full Name" name="name" required>
-
-                <select name="gender" required>
-                    <option value="" disabled selected>Select Gender</option>
-                    <option value="MALE">Male</option>
-                    <option value="FEMALE">Female</option>
-                    <option value="OTHERS">Other</option>
-                </select>
-
-                <input type="tel" placeholder="Mobile Number" name="mobile" pattern="[0-9]{10}" maxlength="10" required>
-
-                <input type="email" placeholder="Email Address" name="email" required>
-
-                <select name="branch" required>
-                    <option value="" disabled selected>Select Branch</option>
-                    <option value="COMPUTER_ENGINEERING">Computer Science</option>
-                    <option value="INFORMATION_TECHNOLOGY">Information Technology</option>
-                    <option value="ELECTRONCICS_AND_COMPUTERS">Electronics</option>
-                    <option value="MECHANICAL_ENGINEERING">Mechanical</option>
-                </select>
-
-                <select name="programme" required>
-                    <option value="" disabled selected>Select Programme</option>
-                    <option value="B.Tech">B.Tech</option>
-                    <option value="M.Tech">M.Tech</option>
-                </select>
-
-                <input type="number" placeholder="Graduation Year" name="graduation" min="2000" max="2100" required>
-
-                <input type="text" placeholder="CGPA (e.g. 8.5)" name="cgpa" pattern="^[0-9](\.[0-9]{1,2})?$" required>
-                
-                <div class="file-upload">
-                    <div class="file-upload-button">Upload Resume (PDF, DOC, DOCX)</div>
-                    <input type="file" name="resume" class="file-upload-input" accept=".pdf,.doc,.docx" required>
-                    <div class="file-name" id="fileName">No file chosen</div>
+        <div class="signup-card">
+            <div class="form-header">
+                <div class="logo">
+                    <img src="https://static.vecteezy.com/system/resources/previews/012/892/296/non_2x/people-finder-logo-magnifying-glass-logo-free-vector.jpg" alt="Logo">
                 </div>
-
-                <input type="password" placeholder="Password" name="password" required>
-
-                <input type="password" placeholder="Confirm Password" name="confirm_password" required>
-
-                <button type="submit" class="sign-in-button">Sign Up</button>
-            </form>
+                <h1 class="title">Create Your Account</h1>
+            </div>
 
             <?php if (isset($error)) {
-                echo "<p class='error'>$error</p>";
+                echo "<div class='error'><i class='fas fa-exclamation-circle'></i> $error</div>";
             } ?>
 
-            <p class="signup-text">Already have an account? <a href="login.php">Sign In</a></p>
+            <form class="signup-form" method="POST" action="" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label for="svvid">SVV ID</label>
+                    <input type="text" id="svvid" name="svvid" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="name">Full Name</label>
+                    <input type="text" id="name" name="name" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="gender">Gender</label>
+                    <select id="gender" name="gender" required>
+                        <option value="" disabled selected>Select Gender</option>
+                        <?php foreach ($genders as $gender): ?>
+                            <option value="<?= htmlspecialchars($gender) ?>"><?= htmlspecialchars(ucwords(strtolower(str_replace('_', ' ', $gender)))) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="mobile">Mobile Number</label>
+                    <input type="tel" id="mobile" name="mobile" pattern="[0-9]{10}" maxlength="10" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="email">Email Address</label>
+                    <input type="email" id="email" name="email" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="branch">Branch</label>
+                    <select id="branch" name="branch" required>
+                        <option value="" disabled selected>Select Branch</option>
+                        <?php foreach ($branches as $branch): ?>
+                            <option value="<?= htmlspecialchars($branch) ?>"><?= htmlspecialchars(ucwords(strtolower(str_replace('_', ' ', $branch)))) ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="programme">Programme</label>
+                    <select id="programme" name="programme" required>
+                        <option value="" disabled selected>Select Programme</option>
+                        <option value="B.Tech">B.Tech</option>
+                        <option value="M.Tech">M.Tech</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label for="graduation">Graduation Year</label>
+                    <input type="number" id="graduation" name="graduation" min="2000" max="2100" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="cgpa">CGPA</label>
+                    <input type="text" id="cgpa" name="cgpa" pattern="^[0-9](\.[0-9]{1,2})?$" placeholder="e.g. 8.5" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="confirm_password">Confirm Password</label>
+                    <input type="password" id="confirm_password" name="confirm_password" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="resume">Resume</label>
+                    <div class="file-upload" id="fileUploadContainer">
+                        <input type="file" name="resume" id="resume" class="file-upload-input" accept=".pdf,.doc,.docx" required>
+                        <i class="fas fa-file-upload file-icon"></i>
+                        <div class="file-label-container">
+                            <span class="file-label">Upload Resume (PDF, DOC)</span>
+                            <span class="file-name" id="fileName">No file chosen</span>
+                        </div>
+                    </div>
+                </div>
+
+                <button type="submit" class="sign-up-button">Create Account</button>
+                
+                <div class="signup-text">
+                    Already have an account? <a href="login.php">Sign In</a>
+                </div>
+            </form>
         </div>
     </div>
     
     <script>
         // Display selected filename
-        document.querySelector('.file-upload-input').addEventListener('change', function() {
+        document.getElementById('resume').addEventListener('change', function() {
             const fileName = this.files[0] ? this.files[0].name : 'No file chosen';
             document.getElementById('fileName').textContent = fileName;
+            
+            // Visual feedback when file is selected
+            const container = document.getElementById('fileUploadContainer');
+            if (this.files[0]) {
+                container.style.borderColor = 'rgba(46, 204, 113, 0.5)';
+                container.style.background = 'rgba(46, 204, 113, 0.1)';
+            } else {
+                container.style.borderColor = 'rgba(255, 255, 255, 0.3)';
+                container.style.background = 'rgba(255, 255, 255, 0.1)';
+            }
+        });
+        
+        // Form validation
+        document.querySelector('form').addEventListener('submit', function(e) {
+            const password = document.getElementById('password');
+            const confirmPassword = document.getElementById('confirm_password');
+            
+            if (password.value !== confirmPassword.value) {
+                e.preventDefault();
+                
+                // Visual feedback for password mismatch
+                password.style.borderColor = '#ff6b6b';
+                confirmPassword.style.borderColor = '#ff6b6b';
+                
+                // Create error message if it doesn't exist
+                if (!document.querySelector('.password-error')) {
+                    const errorMsg = document.createElement('div');
+                    errorMsg.className = 'error password-error';
+                    errorMsg.innerHTML = '<i class="fas fa-exclamation-circle"></i> Passwords do not match.';
+                    confirmPassword.parentNode.appendChild(errorMsg);
+                }
+            }
         });
     </script>
 </body>
