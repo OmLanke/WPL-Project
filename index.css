@@ -1,11 +1,35 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #0072ff;
-    --secondary-color: #00c6ff;
-    --accent-color: #ff416c;
-    --light-text: #fff;
-    --dark-text: #333;
+    --primary-color: #B7202E;
+        /* Power Red */
+        --secondary-color: #ED1C24;
+        /* Vitality Red */
+        --cool-gray: #58595B;
+        /* Pantone Cool Gray */
+        --dark-gray: #231F20;
+        /* Pantone Dark Gray */
+        --white: #FFFFFF;
+        /* White */
+    
+        --orange: #F58220;
+        /* Orange */
+        --light-brown: #A25723;
+        /* Light Brown */
+        --yellow: #FFCB05;
+        /* Yellow */
+        --dark-brown: #603312;
+        /* Dark Brown */
+    
+        --trust-blue: #004A9C;
+        /* Trust Blue */
+        --link-blue: #006699;
+        /* Blue / Link Blue */
+        --dark-link-blue: #004466;
+        /* Dark Blue / Link Blue */
+    
+        --light-text: var(--white);
+        --dark-text: var(--dark-gray);
     --light-bg: rgba(255, 255, 255, 0.15);
     --card-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     --border-radius: 16px;
@@ -25,7 +49,7 @@ html {
     background-repeat: no-repeat;
     background-attachment: fixed;
     color: var(--light-text);
-        display: flex;
+    display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -63,7 +87,7 @@ html {
 
 .title {
     font-size: 2.5rem;
-        font-weight: 700;
+    font-weight: 700;
         margin-bottom: 15px;
         color: var(--light-text);
         text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
@@ -79,7 +103,7 @@ html {
     display: flex;
     justify-content: center;
     gap: 40px;
-        margin-bottom: 60px;
+    margin-bottom: 60px;
         width: 100%;
         flex-wrap: wrap;
 }
@@ -88,7 +112,7 @@ html {
     display: flex;
     flex-direction: column;
     align-items: center;
-        background: var(--light-bg);
+    background: var(--light-bg);
         backdrop-filter: blur(12px);
         -webkit-backdrop-filter: blur(12px);
         padding: 40px;
@@ -126,7 +150,7 @@ html {
         align-items: center;
     justify-content: center;
     border-radius: 50%;
-        color: var(--light-text);
+    color: var(--light-text);
         transition: all 0.3s ease;
 }
 

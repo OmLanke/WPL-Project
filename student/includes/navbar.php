@@ -28,11 +28,23 @@ switch ($activePage) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #0072ff;
-            --secondary-color: #00c6ff;
-            --accent-color: #ff416c;
-            --text-color: #333;
-            --light-text: #fff;
+            --primary-color: #B7202E; /* Power Red */
+            --secondary-color: #ED1C24; /* Vitality Red */
+            --cool-gray: #58595B; /* Pantone Cool Gray */
+            --dark-gray: #231F20; /* Pantone Dark Gray */
+            --white: #FFFFFF; /* White */
+            
+            --orange: #F58220; /* Orange */
+            --light-brown: #A25723; /* Light Brown */
+            --yellow: #FFCB05; /* Yellow */
+            --dark-brown: #603312; /* Dark Brown */
+            
+            --trust-blue: #004A9C; /* Trust Blue */
+            --link-blue: #006699; /* Blue / Link Blue */
+            --dark-link-blue: #004466; /* Dark Blue / Link Blue */
+            
+            --text-color: var(--dark-gray);
+            --light-text: var(--white);
             --border-radius: 8px;
             --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }

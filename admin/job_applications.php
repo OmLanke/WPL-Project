@@ -218,7 +218,7 @@ $conn->close();
         }
         
         .job-company {
-            color: #6c757d;
+            color: var(--cool-gray);
             margin: 5px 0 0 0;
         }
         
@@ -231,130 +231,141 @@ $conn->close();
             display: inline-flex;
             justify-content: center;
             align-items: center;
-            padding: 10px 20px;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            text-decoration: none;
-            cursor: pointer;
-            transition: background-color 0.3s;
-            font-size: 16px;
-            white-space: nowrap;
-            min-width: 160px; /* Increased minimum width */
-            text-align: center;
-            height: 44px; /* Fixed height to ensure vertical alignment */
-        }
-        
-        .btn-action i {
-            margin-right: 8px; /* Add spacing between icon and text */
         }
         
         .btn-edit {
-            background-color: #007bff;
+            background-color: var(--trust-blue);
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
         
         .btn-edit:hover {
-            background-color: #0069d9;
+            background-color: var(--dark-link-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 74, 156, 0.3);
         }
         
         .btn-export {
-            background-color: #28a745;
+            background-color: var(--light-brown);
+            color: var(--white);
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
         }
         
         .btn-export:hover {
-            background-color: #218838;
+            background-color: var(--dark-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(162, 87, 35, 0.3);
         }
         
         .stats-cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
             gap: 15px;
-            margin-bottom: 30px;
+            margin-bottom: 25px;
         }
         
         .stat-card {
             background: white;
-            padding: 15px;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            padding: 15px;
             text-align: center;
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        
+        .stat-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 5px 12px rgba(0, 0, 0, 0.15);
         }
         
         .stat-count {
-            font-size: 24px;
-            font-weight: bold;
-            margin: 0;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 5px;
+            line-height: 1;
         }
         
         .stat-label {
-            color: #6c757d;
-            margin: 5px 0 0 0;
-            font-size: 14px;
+            color: var(--cool-gray);
+            font-size: 0.9rem;
         }
         
         .stat-total .stat-count {
-            color: #17a2b8;
+            color: var(--primary-color);
         }
         
         .stat-applied .stat-count {
-            color: #007bff;
+            color: var(--trust-blue);
         }
         
         .stat-interviewing .stat-count {
-            color: #fd7e14;
+            color: var(--yellow);
         }
         
         .stat-accepted .stat-count {
-            color: #28a745;
+            color: var(--light-brown);
         }
         
         .stat-rejected .stat-count {
-            color: #dc3545;
+            color: var(--secondary-color);
         }
         
         .alert {
             padding: 15px;
             margin-bottom: 20px;
-            border-radius: 4px;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
         
         .alert-success {
-            background-color: #d4edda;
-            color: #155724;
+            background-color: rgba(162, 87, 35, 0.1);
+            color: var(--light-brown);
+            border-left: 4px solid var(--light-brown);
         }
         
         .alert-danger {
-            background-color: #f8d7da;
-            color: #721c24;
+            background-color: rgba(237, 28, 36, 0.1);
+            color: var(--secondary-color);
+            border-left: 4px solid var(--secondary-color);
         }
         
         .applications-table {
             width: 100%;
             border-collapse: collapse;
-            background: white;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            margin-bottom: 20px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
             overflow: hidden;
-            margin-bottom: 30px;
         }
         
         .applications-table th, 
         .applications-table td {
             padding: 12px 15px;
             text-align: left;
+            border-bottom: 1px solid #eee;
         }
         
         .applications-table th {
-            background-color: #f8f9fa;
-            color: #495057;
-            font-weight: bold;
-            text-transform: uppercase;
-            font-size: 12px;
-            letter-spacing: 1px;
+            background-color: rgba(183, 32, 46, 0.1);
+            color: var(--primary-color);
+            font-weight: 600;
+            white-space: nowrap;
         }
         
         .applications-table tbody tr {
-            border-bottom: 1px solid #f2f2f2;
+            transition: background-color 0.3s;
         }
         
         .applications-table tbody tr:last-child {
@@ -362,89 +373,106 @@ $conn->close();
         }
         
         .applications-table tbody tr:hover {
-            background-color: #f9f9f9;
+            background-color: rgba(183, 32, 46, 0.03);
         }
         
         .student-name {
-            font-weight: bold;
-            color: #333;
+            font-weight: 600;
+            color: var(--dark-gray);
         }
         
         .student-id {
-            color: #6c757d;
-            font-size: 13px;
+            font-size: 0.85rem;
+            color: var(--cool-gray);
+            display: block;
+            margin-top: 2px;
         }
         
         .student-details {
-            font-size: 14px;
-            color: #495057;
+            font-size: 0.9rem;
+            margin-top: 5px;
+            color: var(--cool-gray);
         }
         
         .status-badge {
             display: inline-block;
             padding: 5px 10px;
             border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
+            font-size: 0.85rem;
+            font-weight: 500;
             text-align: center;
-            color: white;
+            white-space: nowrap;
         }
         
         .status-applied {
-            background-color: #17a2b8;
+            background-color: rgba(0, 74, 156, 0.15);
+            color: var(--trust-blue);
         }
         
         .status-interviewing {
-            background-color: #fd7e14;
+            background-color: rgba(255, 203, 5, 0.15);
+            color: var(--dark-brown);
         }
         
         .status-rejected {
-            background-color: #dc3545;
+            background-color: rgba(237, 28, 36, 0.15);
+            color: var(--secondary-color);
         }
         
         .status-accepted {
-            background-color: #28a745;
+            background-color: rgba(162, 87, 35, 0.15);
+            color: var(--light-brown);
         }
         
         .status-other {
-            background-color: #6c757d;
+            background-color: rgba(88, 89, 91, 0.15);
+            color: var(--cool-gray);
         }
         
         .date-applied {
-            font-size: 14px;
-            color: #6c757d;
+            font-size: 0.85rem;
+            color: var(--cool-gray);
         }
         
         .btn-download {
-            padding: 6px 12px;
-            background-color: #17a2b8;
-            color: white;
+            background-color: var(--trust-blue);
+            color: var(--white);
             border: none;
+            padding: 6px 10px;
             border-radius: 4px;
+            font-size: 0.85rem;
             cursor: pointer;
             text-decoration: none;
-            font-size: 14px;
-            transition: background-color 0.3s;
-            display: inline-block;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .btn-download:hover {
-            background-color: #138496;
+            background-color: var(--dark-link-blue);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(0, 74, 156, 0.3);
         }
         
         .btn-change-status {
-            padding: 6px 12px;
-            background-color: #fd7e14;
-            color: white;
+            background-color: var(--orange);
+            color: var(--white);
             border: none;
+            padding: 6px 10px;
             border-radius: 4px;
+            font-size: 0.85rem;
             cursor: pointer;
-            font-size: 14px;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
         }
         
         .btn-change-status:hover {
-            background-color: #e76b00;
+            background-color: var(--light-brown);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(245, 130, 32, 0.3);
         }
         
         /* Modal styles */
@@ -457,115 +485,130 @@ $conn->close();
             width: 100%;
             height: 100%;
             overflow: auto;
-            background-color: rgba(0,0,0,0.4);
-            animation: fadeIn 0.3s;
+            background-color: rgba(0, 0, 0, 0.5);
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
+            animation: fadeIn 0.3s ease-out;
         }
         
         .modal-content {
-            background-color: #fefefe;
+            background-color: white;
             margin: 10% auto;
-            padding: 20px;
-            border: 1px solid #888;
+            max-width: 450px;
             border-radius: 8px;
-            width: 400px;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-            animation: slideIn 0.3s;
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+            animation: slideIn 0.3s ease-out;
+            position: relative;
+            transform: translateY(0);
         }
         
         .modal-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            padding: 15px 20px;
             border-bottom: 1px solid #eee;
-            padding-bottom: 10px;
-            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
         }
         
         .modal-title {
+            color: var(--primary-color);
+            font-weight: 600;
+            font-size: 1.2rem;
             margin: 0;
-            font-size: 20px;
-            color: #333;
         }
         
         .close {
-            color: #aaa;
-            font-size: 28px;
+            color: var(--cool-gray);
+            font-size: 1.5rem;
             font-weight: bold;
             cursor: pointer;
+            transition: color 0.3s;
+            background: none;
+            border: none;
+            padding: 0;
+            line-height: 1;
         }
         
         .close:hover {
-            color: #555;
+            color: var(--primary-color);
         }
         
         .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
+            padding: 20px;
         }
         
         .form-group {
-            display: flex;
-            flex-direction: column;
-            gap: 8px;
+            margin-bottom: 15px;
         }
         
         .form-group label {
-            font-weight: bold;
-            color: #555;
+            display: block;
+            margin-bottom: 5px;
+            color: var(--dark-gray);
+            font-weight: 500;
+            font-size: 0.9rem;
         }
         
         .form-control {
+            width: 100%;
             padding: 10px;
-            border: 1px solid #ced4da;
+            border: 1px solid #ddd;
             border-radius: 4px;
-            font-size: 16px;
+            transition: border-color 0.3s, box-shadow 0.3s;
+            font-family: inherit;
+            font-size: 0.95rem;
         }
         
         .form-control:focus {
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(183, 32, 46, 0.1);
             outline: none;
-            border-color: #80bdff;
-            box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
         }
         
         textarea.form-control {
+            min-height: 100px;
             resize: vertical;
-            min-height: 80px;
         }
         
         .modal-actions {
             display: flex;
             justify-content: flex-end;
             gap: 10px;
-            margin-top: 20px;
+            padding: 0 20px 20px;
         }
         
         .btn-cancel {
-            padding: 8px 16px;
-            background-color: #6c757d;
-            color: white;
+            background-color: #e9e9e9;
+            color: var(--dark-gray);
             border: none;
+            padding: 8px 15px;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-weight: 500;
         }
         
         .btn-cancel:hover {
-            background-color: #5a6268;
+            background-color: #dbdbdb;
         }
         
         .btn-update {
-            padding: 8px 16px;
-            background-color: #007bff;
-            color: white;
+            background-color: var(--primary-color);
+            color: var(--white);
             border: none;
+            padding: 8px 15px;
             border-radius: 4px;
             cursor: pointer;
-            transition: background-color 0.3s;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-weight: 500;
         }
         
         .btn-update:hover {
-            background-color: #0069d9;
+            background-color: var(--secondary-color);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 6px rgba(183, 32, 46, 0.3);
         }
         
         .empty-state {
@@ -573,22 +616,22 @@ $conn->close();
             padding: 40px 20px;
             background: white;
             border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
         }
         
         .empty-state h2 {
-            color: #6c757d;
+            color: var(--cool-gray);
             margin-bottom: 15px;
         }
         
         @keyframes fadeIn {
-            from {opacity: 0}
-            to {opacity: 1}
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
         
         @keyframes slideIn {
-            from {transform: translateY(-50px); opacity: 0}
-            to {transform: translateY(0); opacity: 1}
+            from { transform: translateY(-20px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
         }
     </style>
 </head>

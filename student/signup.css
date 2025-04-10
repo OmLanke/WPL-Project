@@ -5,7 +5,8 @@ html {
     box-sizing: border-box;
     height: 100%;
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(to right, #00c6ff, #0072ff);
+    background: linear-gradient(to right, #ED1C24, #B7202E);
+        /* Updated to Vitality Red and Power Red */
     background-repeat: no-repeat;
     background-attachment: fixed;
     display: flex;
@@ -67,7 +68,8 @@ input {
 
 .drag-drop {
     padding: 20px;
-    border: 2px dashed #ccc;
+    border: 2px dashed #58595B;
+        /* Updated to Pantone Cool Gray */
     text-align: center;
     cursor: pointer;
     background-color: #fafafa;
@@ -81,7 +83,8 @@ input {
 button {
     width: 100%;
     padding: 10px;
-    background-color: #007bff;
+    background-color: #F58220;
+        /* Updated to Orange */
     color: white;
     border: none;
     border-radius: 5px;
@@ -90,7 +93,8 @@ button {
 }
 
 button:hover {
-    background-color: #0056b3;
+    background-color: #A25723;
+        /* Updated to Light Brown */
 }
 
 @keyframes fadeIn {

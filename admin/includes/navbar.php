@@ -38,13 +38,25 @@ switch ($activePage) {
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
-            --primary-color: #0072ff;
-            --secondary-color: #00c6ff;
-            --accent-color: #ff416c;
-            --success-color: #2ecc71;
-            --success-hover: #27ae60;
-            --text-color: #333;
-            --light-text: #fff;
+            --primary-color: #B7202E; /* Power Red */
+            --secondary-color: #ED1C24; /* Vitality Red */
+            --cool-gray: #58595B; /* Pantone Cool Gray */
+            --dark-gray: #231F20; /* Pantone Dark Gray */
+            --white: #FFFFFF; /* White */
+            
+            --orange: #F58220; /* Orange */
+            --light-brown: #A25723; /* Light Brown */
+            --yellow: #FFCB05; /* Yellow */
+            --dark-brown: #603312; /* Dark Brown */
+            
+            --trust-blue: #004A9C; /* Trust Blue */
+            --link-blue: #006699; /* Blue / Link Blue */
+            --dark-link-blue: #004466; /* Dark Blue / Link Blue */
+            
+            --success-color: var(--light-brown);
+            --success-hover: var(--dark-brown);
+            --text-color: var(--dark-gray);
+            --light-text: var(--white);
             --border-radius: 8px;
             --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         }
@@ -127,7 +139,7 @@ switch ($activePage) {
         }
         
         .btn-add {
-            background-color: var(--success-color);
+            background-color: var(--orange);
             color: var(--light-text);
             padding: 8px 16px;
             border-radius: 25px;
@@ -137,17 +149,17 @@ switch ($activePage) {
             gap: 8px;
             font-family: 'Poppins', sans-serif;
             font-weight: 500;
-            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+            box-shadow: 0 4px 10px rgba(245, 130, 32, 0.3);
         }
         
         .btn-add:hover {
-            background-color: var(--success-hover);
+            background-color: var(--light-brown);
             transform: translateY(-1px);
-            box-shadow: 0 6px 12px rgba(46, 204, 113, 0.4);
+            box-shadow: 0 6px 12px rgba(162, 87, 35, 0.4);
         }
         
         .btn-add.active {
-            background-color: var(--success-hover);
+            background-color: var(--light-brown);
             box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
         }
         

@@ -5,7 +5,8 @@ html {
     box-sizing: border-box;
     height: 100%;
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(135deg, #0072ff, #00c6ff);
+    background: linear-gradient(135deg, #ED1C24, #B7202E);
+        /* Updated to Vitality Red and Power Red */
     background-repeat: no-repeat;
     background-attachment: fixed;
     display: flex;
@@ -81,17 +82,19 @@ form input::placeholder {
 .sign-in-button {
     font-size: 18px;
     font-weight: 600;
-    background: linear-gradient(to right, #ff416c, #ff4b2b);
+    background: linear-gradient(to right, #F58220, #A25723);
+        /* Updated to Orange and Light Brown */
     cursor: pointer;
     transition: all 0.3s ease;
-        box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3);
+        box-shadow: 0 4px 10px rgba(245, 130, 32, 0.3);
         letter-spacing: 0.5px;
 }
 
 .sign-in-button:hover {
-    background: linear-gradient(to right, #ff4b2b, #ff416c);
+    background: linear-gradient(to right, #A25723, #F58220);
+        /* Reversed gradient */
     transform: translateY(-2px);
-        box-shadow: 0 6px 15px rgba(255, 75, 43, 0.4);
+        box-shadow: 0 6px 15px rgba(245, 130, 32, 0.4);
 }
 .sign-in-button:active {
     transform: translateY(0);
@@ -103,14 +106,15 @@ form input::placeholder {
 }
 
 .signup-text a {
-    color: #ffdf00;
+    color: #FFCB05;
+        /* Updated to Yellow */
     text-decoration: none;
     font-weight: 600;
         transition: all 0.3s ease;
 }
 .signup-text a:hover {
     color: #fff;
-    text-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
+    text-shadow: 0 0 10px rgba(255, 203, 5, 0.5);
 }
 @keyframes fadeIn {
     from {
@@ -137,12 +141,13 @@ form input::placeholder {
 
 /* Error message styling */
 .error {
-    color: #ff6b6b;
+    color: #ED1C24;
+        /* Updated to Vitality Red */
     margin-top: 10px;
     font-size: 14px;
-    background: rgba(255, 107, 107, 0.1);
+    background: rgba(237, 28, 36, 0.1);
     padding: 10px;
     border-radius: 10px;
-    border-left: 3px solid #ff6b6b;
+    border-left: 3px solid #ED1C24;
     text-align: left;
 }

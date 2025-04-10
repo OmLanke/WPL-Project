@@ -1,18 +1,42 @@
-/* Modern UI styling for SkillBridge student portal */
+/* Modern UI styling for student portal */
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 
 :root {
-    --primary-color: #0072ff;
-    --secondary-color: #00c6ff;
-    --accent-color: #ff416c;
-    --success-color: #2ecc71;
-    --danger-color: #e74c3c;
-    --warning-color: #f39c12;
-    --info-color: #3498db;
+    --primary-color: #B7202E;
+        /* Power Red */
+        --secondary-color: #ED1C24;
+        /* Vitality Red */
+        --cool-gray: #58595B;
+        /* Pantone Cool Gray */
+        --dark-gray: #231F20;
+        /* Pantone Dark Gray */
+        --white: #FFFFFF;
+        /* White */
+    
+        --orange: #F58220;
+        /* Orange */
+        --light-brown: #A25723;
+        /* Light Brown */
+        --yellow: #FFCB05;
+        /* Yellow */
+        --dark-brown: #603312;
+        /* Dark Brown */
+    
+        --trust-blue: #004A9C;
+        /* Trust Blue */
+        --link-blue: #006699;
+        /* Blue / Link Blue */
+        --dark-link-blue: #004466;
+        /* Dark Blue / Link Blue */
+    
+        --success-color: var(--light-brown);
+        --danger-color: var(--secondary-color);
+        --warning-color: var(--yellow);
+        --info-color: var(--trust-blue);
     --light-bg: #f8f9fa;
-    --dark-text: #333;
-    --light-text: #fff;
-    --gray-text: #6c757d;
+    --dark-text: var(--dark-gray);
+        --light-text: var(--white);
+        --gray-text: var(--cool-gray);
     --border-radius: 8px;
     --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
     --card-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -178,7 +202,7 @@ td {
 }
 
 th {
-    background-color: rgba(0, 114, 255, 0.1);
+    background-color: rgba(183, 32, 46, 0.1);
     color: var(--primary-color);
     font-weight: 600;
     position: sticky;
@@ -186,7 +210,7 @@ th {
 }
 
 tr:nth-child(even) {
-    background-color: rgba(0, 114, 255, 0.03);
+    background-color: rgba(183, 32, 46, 0.03);
 }
 
 tr {
@@ -194,7 +218,7 @@ tr {
 }
 
 tr:hover {
-    background-color: rgba(0, 114, 255, 0.05);
+    background-color: rgba(183, 32, 46, 0.05);
 }
 
 /* Buttons */
@@ -215,34 +239,34 @@ tr:hover {
 .btn-primary {
     background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
     color: white;
-    box-shadow: 0 4px 10px rgba(0, 114, 255, 0.3);
+    box-shadow: 0 4px 10px rgba(183, 32, 46, 0.3);
 }
 
 .btn-primary:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(0, 114, 255, 0.4);
+    box-shadow: 0 6px 15px rgba(183, 32, 46, 0.4);
 }
 
 .btn-success {
     background-color: var(--success-color);
     color: white;
-    box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
+    box-shadow: 0 4px 10px rgba(162, 87, 35, 0.3);
 }
 
 .btn-success:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(46, 204, 113, 0.4);
+    box-shadow: 0 6px 15px rgba(162, 87, 35, 0.4);
 }
 
 .btn-danger {
     background-color: var(--danger-color);
     color: white;
-    box-shadow: 0 4px 10px rgba(231, 76, 60, 0.3);
+    box-shadow: 0 4px 10px rgba(237, 28, 36, 0.3);
 }
 
 .btn-danger:hover {
     transform: translateY(-2px);
-    box-shadow: 0 6px 15px rgba(231, 76, 60, 0.4);
+    box-shadow: 0 6px 15px rgba(237, 28, 36, 0.4);
 }
 
 /* Status badges */
@@ -256,27 +280,27 @@ tr:hover {
 }
 
 .badge-success {
-    background-color: rgba(46, 204, 113, 0.2);
+    background-color: rgba(162, 87, 35, 0.2);
     color: var(--success-color);
-    border: 1px solid rgba(46, 204, 113, 0.3);
+    border: 1px solid rgba(162, 87, 35, 0.3);
 }
 
 .badge-danger {
-    background-color: rgba(231, 76, 60, 0.2);
+    background-color: rgba(237, 28, 36, 0.2);
     color: var(--danger-color);
-    border: 1px solid rgba(231, 76, 60, 0.3);
+    border: 1px solid rgba(237, 28, 36, 0.3);
 }
 
 .badge-warning {
-    background-color: rgba(243, 156, 18, 0.2);
-    color: var(--warning-color);
-    border: 1px solid rgba(243, 156, 18, 0.3);
+    background-color: rgba(255, 203, 5, 0.2);
+        color: var(--dark-brown);
+        border: 1px solid rgba(255, 203, 5, 0.3);
 }
 
 .badge-info {
-    background-color: rgba(52, 152, 219, 0.2);
+    background-color: rgba(0, 74, 156, 0.2);
     color: var(--info-color);
-    border: 1px solid rgba(52, 152, 219, 0.3);
+    border: 1px solid rgba(0, 74, 156, 0.3);
 }
 
 /* Forms */
@@ -297,7 +321,7 @@ tr:hover {
 .form-control:focus {
     outline: none;
     border-color: var(--primary-color);
-    box-shadow: 0 0 0 3px rgba(0, 114, 255, 0.1);
+    box-shadow: 0 0 0 3px rgba(183, 32, 46, 0.1);
 }
 
 label {

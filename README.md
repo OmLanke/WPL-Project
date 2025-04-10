@@ -20,3 +20,34 @@ The admin portal will only contain a login page, since accounts will be directly
 
 The main homepage contains all the jobs currently active. By clicking on a job card, a page will open containing all the details about it in depth. The admin will get an option to edit job details, like CGPA criteria, 10th 12th marks required, live/dead KT restrictions etc. Admin will also get a list of all students who have to this, along with their details, and download their resume. Admin can update status of a student's application for a job. There will be an option to export all applications data to CSV.
 
+
+## Colour Pallete
+
+### Primary 
+Power Red - #B7202E 
+
+Vitality Red - #ED1C24 
+
+Pantone Cool Gray - #58595B 
+
+Pantone Dark Gray - #231F20 
+
+White - #FFFFFF
+
+### Secondary
+
+Orange - #F58220 
+
+Light Brown - #A25723 
+
+Yellow - #FFCB05 
+
+Dark Brown - #603312 
+
+### Others
+
+Trust Blue - #004A9C 
+
+Blue / Link Blue - #006699 
+
+Dark Blue / Link Blue - #004466 
