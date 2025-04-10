@@ -2,6 +2,7 @@
 $activePage = basename($_SERVER["PHP_SELF"]);
 $home = "";
 $applicationsActive = "";
+$profileActive = "";
 
 switch ($activePage) {
     case "index.php":
@@ -9,6 +10,9 @@ switch ($activePage) {
         break;
     case "applications.php":
         $applicationsActive = ' class="active"';
+        break;
+    case "profile.php":
+        $profileActive = ' class="active"';
         break;
     default:
         break;
@@ -161,6 +165,9 @@ switch ($activePage) {
             </a>
             <a href="applications.php" target="_parent"<?php echo $applicationsActive; ?>>
                 <i class="fas fa-briefcase icon"></i> My Applications
+            </a>
+            <a href="profile.php" target="_parent"<?php echo $profileActive; ?>>
+                <i class="fas fa-user icon"></i> My Profile
             </a>
         </div>
         <div class="spacer"></div>

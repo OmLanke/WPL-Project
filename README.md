@@ -12,6 +12,8 @@ The main homepage contains all the jobs currently active. By clicking on a job c
 
 There is an applications page, which will show all the jobs the student has applied to. Inside an application, the student will find his application status like Applied, Selected for OA, Selected for Interview, Selected for GD, Accepted, Rejected, On Hold, etc.
 
+The profile page will display all the details the student had input during signup, along with an option to edit them.
+
 ## Admin Portal
 
 The admin portal will only contain a login page, since accounts will be directly created from the database. 
