@@ -110,7 +110,7 @@ $conn->close();
                 <?php foreach ($jobs as $job): ?>
                     <div class="job-card">
                         <div class="job-card-header">
-                            <h3><?php echo htmlspecialchars($job['title']); ?></h3>
+                            <h3 style="color: white;"><?php echo htmlspecialchars($job['title']); ?></h3>
                         </div>
                         <div class="job-card-body">
                             <p class="company-name">

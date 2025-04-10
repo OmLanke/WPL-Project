@@ -85,7 +85,7 @@ $conn->close();
                 <?php foreach ($applications as $app): ?>
                     <div class="job-card">
                         <div class="job-card-header">
-                            <h3><?php echo htmlspecialchars($app['title']); ?></h3>
+                            <h3 style="color: white;"><?php echo htmlspecialchars($app['title']); ?></h3>
                         </div>
                         <div class="job-card-body">
                             <p class="company-name">
