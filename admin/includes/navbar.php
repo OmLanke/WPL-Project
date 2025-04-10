@@ -1,8 +1,8 @@
 <?php
 $activePage = basename($_SERVER["PHP_SELF"]);
 $home = "";
-$jobsNav = ""; // Renamed from $jobs to $jobsNav
-$studentsNav = ""; // Renamed from $students to $studentsNav
+$jobsNav = ""; 
+$studentsNav = ""; 
 $addJob = "";
 $addCompany = "";
 
@@ -13,10 +13,10 @@ switch ($activePage) {
     case "manage_jobs.php":
     case "edit_job.php":
     case "job_applications.php":
-        $jobsNav = ' class="active"'; // Updated variable reference
+        $jobsNav = ' class="active"';
         break;
     case "students.php":
-        $studentsNav = ' class="active"'; // Updated variable reference
+        $studentsNav = ' class="active"';
         break;
     case "add_job.php":
         $addJob = ' class="active"';
@@ -34,57 +34,91 @@ switch ($activePage) {
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary-color: #0072ff;
+            --secondary-color: #00c6ff;
+            --accent-color: #ff416c;
+            --success-color: #2ecc71;
+            --success-hover: #27ae60;
+            --text-color: #333;
+            --light-text: #fff;
+            --border-radius: 8px;
+            --box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         nav {
+            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            box-shadow: var(--box-shadow);
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            padding: 12px 20px;
+            border-radius: 0 0 var(--border-radius) var(--border-radius);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            flex-wrap: wrap;
+        }
+        
+        .nav-links {
             display: flex;
             align-items: center;
             gap: 15px;
-            padding: 8px 15px;
-            background-color: #fff;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-        
-        .nav-brand {
-            font-size: 20px;
-            font-weight: bold;
-            color: #007bff;
-            margin-right: 10px;
         }
         
         nav a {
-            color: #333;
+            color: var(--light-text);
             text-decoration: none;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: all 0.3s;
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
             font-size: 15px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
         
         nav a.active {
-            color: #007bff;
-            background-color: rgba(0, 123, 255, 0.1);
+            background: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
         }
-
+        
         nav a:hover {
-            background-color: #f0f0f0;
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
         }
-
-        #logout {
+        
+        .logo {
+            font-size: 22px;
+            font-weight: 700;
+            color: var(--light-text);
+            font-family: 'Poppins', sans-serif;
+            margin-right: 15px;
+            letter-spacing: 0.5px;
+            display: flex;
+            align-items: center;
+        }
+        
+        .logo-img {
+            width: 32px;
+            height: 32px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+        
+        .spacer {
             flex-grow: 1;
-            display: flex;
-            align-items: center;
-            justify-content: flex-end;
-        }
-
-        #logout a {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        #logout img {
-            width: 18px;
-            height: 18px;
         }
         
         .add-buttons {
@@ -93,35 +127,118 @@ switch ($activePage) {
         }
         
         .btn-add {
-            background-color: #28a745;
-            color: white !important;
-            padding: 8px 12px;
-            border-radius: 4px;
-            transition: background-color 0.3s;
+            background-color: var(--success-color);
+            color: var(--light-text);
+            padding: 8px 16px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+            box-shadow: 0 4px 10px rgba(46, 204, 113, 0.3);
         }
         
         .btn-add:hover {
-            background-color: #218838;
+            background-color: var(--success-hover);
+            transform: translateY(-1px);
+            box-shadow: 0 6px 12px rgba(46, 204, 113, 0.4);
+        }
+        
+        .btn-add.active {
+            background-color: var(--success-hover);
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        
+        .logout-btn {
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 25px;
+            padding: 8px 16px;
+            color: var(--light-text);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            font-weight: 500;
+        }
+        
+        .logout-btn:hover {
+            background: rgba(255, 255, 255, 0.25);
+            transform: translateY(-1px);
+        }
+        
+        .icon {
+            font-size: 16px;
+        }
+        
+        @media (max-width: 768px) {
+            nav {
+                justify-content: center;
+                text-align: center;
+                padding: 10px 15px;
+            }
+            
+            .nav-links, .add-buttons {
+                order: 3;
+                width: 100%;
+                justify-content: center;
+                margin-top: 10px;
+                flex-wrap: wrap;
+            }
+            
+            .logo {
+                font-size: 18px;
+                margin-right: 0;
+                width: 100%;
+                justify-content: center;
+                margin-bottom: 10px;
+            }
+            
+            .spacer {
+                display: none;
+            }
+            
+            .logout-btn {
+                margin-top: 10px;
+            }
         }
     </style>
 </head>
 <body>
     <nav>
-        <div class="nav-brand">SkillBridge</div>
-        <?php echo '<a href="./"' . $home . ">Dashboard</a>"; ?>
-        <?php echo '<a href="manage_jobs.php"' . $jobsNav . ">Jobs</a>"; ?> <!-- Updated variable reference -->
-        <?php echo '<a href="students.php"' . $studentsNav . ">Students</a>"; ?> <!-- Updated variable reference -->
-        
-        <div class="add-buttons">
-            <?php echo '<a href="add_job.php"' . $addJob . ' class="btn-add">+ Add Job</a>'; ?>
-            <?php echo '<a href="add_company.php"' . $addCompany . ' class="btn-add">+ Add Company</a>'; ?>
+        <div class="logo">
+            <img src="https://static.vecteezy.com/system/resources/previews/012/892/296/non_2x/people-finder-logo-magnifying-glass-logo-free-vector.jpg" alt="Logo" class="logo-img">
+            SkillBridge Admin
         </div>
-        
-        <div id="logout">
-            <a href="../logout.php">
-                Logout <img src="https://cdn3.iconfinder.com/data/icons/ui-actions-solid/16/logout-arrow-right-exit-1024.png" alt="Logout">
+        <div class="nav-links">
+            <a href="./" target="_parent"<?php echo $home; ?>>
+                <i class="fas fa-chart-line icon"></i> Dashboard
+            </a>
+            <a href="manage_jobs.php" target="_parent"<?php echo $jobsNav; ?>>
+                <i class="fas fa-briefcase icon"></i> Jobs
+            </a>
+            <a href="students.php" target="_parent"<?php echo $studentsNav; ?>>
+                <i class="fas fa-user-graduate icon"></i> Students
             </a>
         </div>
+        
+        <div class="spacer"></div>
+        
+        <div class="add-buttons">
+            <a href="add_job.php" target="_parent" class="btn-add<?php echo $addJob; ?>">
+                <i class="fas fa-plus-circle icon"></i> Add Job
+            </a>
+            <a href="add_company.php" target="_parent" class="btn-add<?php echo $addCompany; ?>">
+                <i class="fas fa-building icon"></i> Add Company
+            </a>
+        </div>
+        
+        <a href="../logout.php" class="logout-btn">
+            <i class="fas fa-sign-out-alt icon"></i> Logout
+        </a>
     </nav>
 </body>
 </html>

@@ -126,13 +126,45 @@ $conn->close();
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sign Up | SkillBridge</title>
     <link rel="stylesheet" href="login.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        .glass-card {
+            width: 380px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+        }
+        
+        select {
+            width: calc(100% - 24px);
+            padding: 12px;
+            margin: 10px auto;
+            display: block;
+            border: none;
+            border-radius: 25px;
+            outline: none;
+            background: rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-size: 16px;
+            text-align-last: center;
+            cursor: pointer;
+            appearance: none;
+            font-family: "Poppins", sans-serif;
+        }
+        
+        select option {
+            background: #0072ff;
+            color: #fff;
+            font-family: "Poppins", sans-serif;
+        }
+        
         .file-upload {
             position: relative;
             display: inline-block;
             width: calc(100% - 24px);
             margin: 10px auto;
         }
+        
         .file-upload-input {
             position: absolute;
             left: 0;
@@ -141,7 +173,9 @@ $conn->close();
             width: 100%;
             height: 100%;
             cursor: pointer;
+            z-index: 2;
         }
+        
         .file-upload-button {
             display: inline-block;
             width: 100%;
@@ -152,7 +186,14 @@ $conn->close();
             border-radius: 25px;
             text-align: center;
             cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: "Poppins", sans-serif;
         }
+        
+        .file-upload:hover .file-upload-button {
+            background: rgba(255, 255, 255, 0.3);
+        }
+        
         .file-name {
             margin-top: 5px;
             font-size: 12px;
@@ -162,10 +203,41 @@ $conn->close();
             text-overflow: ellipsis;
             white-space: nowrap;
         }
+        
         .error {
             color: #ff6b6b;
             margin-top: 10px;
             font-size: 14px;
+            background: rgba(255, 107, 107, 0.1);
+            padding: 10px;
+            border-radius: 10px;
+            border-left: 3px solid #ff6b6b;
+        }
+        
+        /* Custom scrollbar */
+        .glass-card::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .glass-card::-webkit-scrollbar-track {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+        }
+        
+        .glass-card::-webkit-scrollbar-thumb {
+            background: rgba(255, 255, 255, 0.3);
+            border-radius: 10px;
+        }
+        
+        .glass-card::-webkit-scrollbar-thumb:hover {
+            background: rgba(255, 255, 255, 0.5);
+        }
+        
+        @media (max-width: 480px) {
+            .glass-card {
+                width: 90%;
+                padding: 20px;
+            }
         }
     </style>
 </head>

@@ -50,6 +50,11 @@ $application_count_query = "SELECT COUNT(*) FROM application";
 $application_count_result = $conn->query($application_count_query);
 $application_count = $application_count_result->fetch_row()[0];
 
+// Get company counts
+$company_count_query = "SELECT COUNT(*) FROM company";
+$company_count_result = $conn->query($company_count_query);
+$company_count = $company_count_result->fetch_row()[0];
+
 $conn->close();
 ?>
 
@@ -57,133 +62,153 @@ $conn->close();
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="view-transition" content="same-origin">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Admin Dashboard | SkillBridge</title>
-    <style>
-        .dashboard-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            padding: 20px;
-        }
-        
-        .welcome-section {
-            margin-bottom: 30px;
-        }
-        
-        .stats-cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-            margin-bottom: 30px;
-        }
-        
-        .stat-card {
-            background: white;
-            border-radius: 8px;
-            padding: 20px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            text-align: center;
-        }
-        
-        .stat-card h2 {
-            font-size: 40px;
-            margin: 0;
-            color: #007bff;
-        }
-        
-        .stat-card p {
-            margin: 10px 0 0;
-            color: #666;
-        }
-        
-        .actions-section {
-            margin-bottom: 30px;
-        }
-        
-        .section-title {
-            margin-bottom: 15px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-            color: #333;
-        }
-        
-        .action-buttons {
-            display: flex;
-            gap: 15px;
-            flex-wrap: wrap;
-        }
-        
-        .action-button {
-            display: inline-block;
-            padding: 12px 24px;
-            background: #007bff;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            font-size: 15px;
-            cursor: pointer;
-            text-decoration: none;
-            text-align: center;
-            transition: background 0.3s;
-        }
-        
-        .action-button:hover {
-            background: #0056b3;
-        }
-        
-        .action-button.secondary {
-            background: #6c757d;
-        }
-        
-        .action-button.secondary:hover {
-            background: #5a6268;
-        }
-        
-        .action-button.success {
-            background: #28a745;
-        }
-        
-        .action-button.success:hover {
-            background: #218838;
-        }
-    </style>
 </head>
 
 <body>
     <?php include "includes/navbar.php"; ?>
 
-    <div class="dashboard-container">
-        <div class="welcome-section">
-            <h1>Welcome, <?php echo htmlspecialchars($name); ?></h1>
-            <p>Manage jobs, students, and applications</p>
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h1 class="card-title">Welcome, <?php echo htmlspecialchars($name); ?></h1>
+                <span>Administration Dashboard</span>
+            </div>
+            <div class="card-body">
+                <p class="mb-2">Manage job listings, student applications, and company details from this central dashboard.</p>
+            </div>
         </div>
 
-        <div class="stats-cards">
-            <div class="stat-card">
-                <h2><?php echo $job_count; ?></h2>
-                <p>Active Jobs</p>
+        <div class="stats-container">
+            <div class="stat-card jobs">
+                <div class="d-flex align-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-briefcase"></i>
+                    </div>
+                    <div>
+                        <div class="stat-number"><?php echo $job_count; ?></div>
+                        <div class="stat-title">Active Jobs</div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <h2><?php echo $student_count; ?></h2>
-                <p>Registered Students</p>
+            
+            <div class="stat-card students">
+                <div class="d-flex align-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-user-graduate"></i>
+                    </div>
+                    <div>
+                        <div class="stat-number"><?php echo $student_count; ?></div>
+                        <div class="stat-title">Registered Students</div>
+                    </div>
+                </div>
             </div>
-            <div class="stat-card">
-                <h2><?php echo $application_count; ?></h2>
-                <p>Total Applications</p>
+            
+            <div class="stat-card applications">
+                <div class="d-flex align-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-file-alt"></i>
+                    </div>
+                    <div>
+                        <div class="stat-number"><?php echo $application_count; ?></div>
+                        <div class="stat-title">Total Applications</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="stat-card companies">
+                <div class="d-flex align-center">
+                    <div class="stat-icon">
+                        <i class="fas fa-building"></i>
+                    </div>
+                    <div>
+                        <div class="stat-number"><?php echo $company_count; ?></div>
+                        <div class="stat-title">Partner Companies</div>
+                    </div>
+                </div>
             </div>
         </div>
-        
-        <div class="actions-section">
-            <h2 class="section-title">Quick Actions</h2>
-            <div class="action-buttons">
-                <a href="manage_jobs.php" class="action-button">Manage Jobs</a>
-                <a href="students.php" class="action-button secondary">View Students</a>
-                <a href="add_job.php" class="action-button success">Add New Job</a>
+
+        <div class="card mb-3">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-bolt mr-1"></i> Quick Actions</h2>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap" style="gap: 15px;">
+                    <a href="manage_jobs.php" class="btn btn-primary">
+                        <i class="fas fa-list-ul mr-1"></i> Manage Jobs
+                    </a>
+                    <a href="students.php" class="btn btn-info">
+                        <i class="fas fa-users mr-1"></i> View Students
+                    </a>
+                    <a href="add_job.php" class="btn btn-success">
+                        <i class="fas fa-plus-circle mr-1"></i> Add New Job
+                    </a>
+                    <a href="add_company.php" class="btn btn-warning">
+                        <i class="fas fa-building mr-1"></i> Add Company
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <div class="card">
+            <div class="card-header">
+                <h2 class="card-title"><i class="fas fa-chart-line mr-1"></i> System Overview</h2>
+            </div>
+            <div class="card-body">
+                <div class="d-flex flex-wrap justify-between">
+                    <div style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+                        <h3><i class="fas fa-thumbs-up mr-1"></i> Placement Statistics</h3>
+                        <div class="mb-2 mt-2">
+                            <div class="badge badge-success mb-1">
+                                <i class="fas fa-check-circle mr-1"></i> System Working Properly
+                            </div>
+                        </div>
+                        <p>Monitor student applications, job postings, and placement rates in real-time.</p>
+                    </div>
+                    
+                    <div style="flex: 1; min-width: 250px; margin-bottom: 20px;">
+                        <h3><i class="fas fa-tasks mr-1"></i> Administrative Tasks</h3>
+                        <ul style="list-style: none; padding-left: 0; margin-top: 10px;">
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check-circle mr-1" style="color: var(--success-color);"></i> Verify new student registrations</li>
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check-circle mr-1" style="color: var(--success-color);"></i> Review recent job applications</li>
+                            <li style="margin-bottom: 8px;"><i class="fas fa-check-circle mr-1" style="color: var(--success-color);"></i> Update company information</li>
+                        </ul>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
+
+    <script>
+        // Add animation to stat cards
+        document.addEventListener("DOMContentLoaded", function() {
+            const statCards = document.querySelectorAll('.stat-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            statCards.forEach((card, index) => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+                card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                card.style.transitionDelay = (index * 0.1) + "s";
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 
 </html>

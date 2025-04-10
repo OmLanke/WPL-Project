@@ -196,6 +196,7 @@ $conn->close();
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <title>Applications for <?php echo htmlspecialchars($job['title']); ?> | Admin</title>
     <style>
         .container {
@@ -227,14 +228,25 @@ $conn->close();
         }
         
         .btn-action {
-            display: inline-block;
-            padding: 8px 16px;
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
             color: white;
             border: none;
             border-radius: 4px;
             text-decoration: none;
             cursor: pointer;
             transition: background-color 0.3s;
+            font-size: 16px;
+            white-space: nowrap;
+            min-width: 160px; /* Increased minimum width */
+            text-align: center;
+            height: 44px; /* Fixed height to ensure vertical alignment */
+        }
+        
+        .btn-action i {
+            margin-right: 8px; /* Add spacing between icon and text */
         }
         
         .btn-edit {
@@ -591,8 +603,12 @@ $conn->close();
                 <p class="job-company"><?php echo htmlspecialchars($job['company_name']); ?> - <?php echo htmlspecialchars($job['industry']); ?></p>
             </div>
             <div class="job-actions">
-                <a href="edit_job.php?id=<?php echo $jobID; ?>" class="btn-action btn-edit">Edit Job</a>
-                <a href="job_applications.php?id=<?php echo $jobID; ?>&export=csv" class="btn-action btn-export">Export to CSV</a>
+                <a href="edit_job.php?id=<?php echo $jobID; ?>" class="btn-action btn-edit">
+                    <i class="fas fa-edit"></i> Edit Job
+                </a>
+                <a href="job_applications.php?id=<?php echo $jobID; ?>&export=csv" class="btn-action btn-export">
+                    <i class="fas fa-file-export"></i> Export to CSV
+                </a>
             </div>
         </div>
 

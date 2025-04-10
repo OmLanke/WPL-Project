@@ -50,166 +50,117 @@ $conn->close();
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Applications</title>
+    <title>My Applications | SkillBridge</title>
     <link rel="stylesheet" href="style.css">
-    <style>
-        .applications-container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 0 15px;
-        }
-        .page-title {
-            color: #333;
-            margin-bottom: 20px;
-            padding-bottom: 10px;
-            border-bottom: 1px solid #eee;
-        }
-        .applications-list {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-            gap: 20px;
-        }
-        .application-card {
-            background: white;
-            border-radius: 8px;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-        .application-card:hover {
-            transform: translateY(-5px);
-        }
-        .application-header {
-            padding: 15px;
-            border-bottom: 1px solid #eee;
-        }
-        .application-company {
-            font-size: 14px;
-            color: #666;
-            margin-bottom: 5px;
-        }
-        .application-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin: 0;
-            color: #333;
-        }
-        .application-body {
-            padding: 15px;
-        }
-        .application-details {
-            margin-bottom: 15px;
-        }
-        .application-details p {
-            margin: 5px 0;
-            font-size: 14px;
-            display: flex;
-            justify-content: space-between;
-        }
-        .application-details span {
-            font-weight: bold;
-            color: #555;
-        }
-        .status-badge {
-            display: inline-block;
-            padding: 5px 10px;
-            border-radius: 20px;
-            font-size: 12px;
-            font-weight: bold;
-            text-align: center;
-            color: white;
-        }
-        .status-applied {
-            background-color: #17a2b8;
-        }
-        .status-interviewing {
-            background-color: #ffc107;
-            color: #212529;
-        }
-        .status-rejected {
-            background-color: #dc3545;
-        }
-        .status-accepted {
-            background-color: #28a745;
-        }
-        .application-footer {
-            padding: 15px;
-            border-top: 1px solid #eee;
-            text-align: center;
-        }
-        .btn-view {
-            display: inline-block;
-            padding: 8px 15px;
-            background-color: #007bff;
-            color: white;
-            border-radius: 4px;
-            text-decoration: none;
-            font-size: 14px;
-            transition: background-color 0.3s;
-        }
-        .btn-view:hover {
-            background-color: #0056b3;
-            text-decoration: none;
-        }
-        .no-applications {
-            text-align: center;
-            padding: 40px 0;
-            color: #666;
-        }
-    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
 </head>
 
 <body>
     <?php include "includes/navbar.php"; ?>
 
-    <div class="applications-container">
-        <h1 class="page-title">My Applications</h1>
+    <div class="container">
+        <div class="card mb-3">
+            <div class="card-header">
+                <h1 class="card-title"><i class="fas fa-clipboard-list mr-1"></i> My Applications</h1>
+                <span class="badge badge-info">
+                    Total: <?php echo count($applications); ?>
+                </span>
+            </div>
+        </div>
 
         <?php if (empty($applications)): ?>
-            <div class="no-applications">
-                <h3>You haven't applied to any jobs yet</h3>
-                <p>Browse available jobs and submit your applications</p>
-                <a href="./" class="btn-view">Browse Jobs</a>
+            <div class="card text-center p-2">
+                <div class="mb-2">
+                    <i class="fas fa-folder-open" style="font-size: 3rem; color: var(--gray-text); margin: 20px 0;"></i>
+                </div>
+                <h2>You haven't applied to any jobs yet</h2>
+                <p class="mb-2">Browse available opportunities and submit your application</p>
+                <a href="./" class="btn btn-primary mt-2">
+                    <i class="fas fa-search mr-1"></i> Browse Jobs
+                </a>
             </div>
         <?php else: ?>
-            <div class="applications-list">
+            <div class="job-listing">
                 <?php foreach ($applications as $app): ?>
-                    <div class="application-card">
-                        <div class="application-header">
-                            <p class="application-company"><?php echo htmlspecialchars($app['company_name']); ?> - <?php echo htmlspecialchars($app['industry']); ?></p>
-                            <h3 class="application-title"><?php echo htmlspecialchars($app['title']); ?></h3>
+                    <div class="job-card">
+                        <div class="job-card-header">
+                            <h3><?php echo htmlspecialchars($app['title']); ?></h3>
                         </div>
-                        <div class="application-body">
-                            <div class="application-details">
-                                <p>
-                                    <span>Status:</span>
+                        <div class="job-card-body">
+                            <p class="company-name">
+                                <i class="fas fa-building job-detail-icon"></i>
+                                <?php echo htmlspecialchars($app['company_name']); ?> - <?php echo htmlspecialchars($app['industry']); ?>
+                            </p>
+                            
+                            <div class="job-details">
+                                <div class="job-detail-item">
+                                    <i class="fas fa-calendar-alt job-detail-icon"></i>
+                                    <span>Applied: <?php echo date('d M Y', strtotime($app['applied_date'])); ?></span>
+                                </div>
+                                
+                                <div class="job-detail-item">
+                                    <i class="fas fa-money-bill-wave job-detail-icon"></i>
+                                    <span>₹<?php echo number_format($app['salary']); ?>/year</span>
+                                </div>
+                                
+                                <div class="job-detail-item">
                                     <?php
-                                    $statusClass = 'status-applied';
+                                    $statusIcon = 'fa-hourglass-half';
+                                    $statusClass = 'badge-info';
                                     
                                     if (strpos(strtolower($app['status']), 'interview') !== false) {
-                                        $statusClass = 'status-interviewing';
+                                        $statusIcon = 'fa-user-tie';
+                                        $statusClass = 'badge-warning';
                                     } elseif (strtolower($app['status']) === 'rejected') {
-                                        $statusClass = 'status-rejected';
+                                        $statusIcon = 'fa-times-circle';
+                                        $statusClass = 'badge-danger';
                                     } elseif (strtolower($app['status']) === 'accepted') {
-                                        $statusClass = 'status-accepted';
+                                        $statusIcon = 'fa-check-circle';
+                                        $statusClass = 'badge-success';
                                     }
                                     ?>
-                                    <span class="status-badge <?php echo $statusClass; ?>">
+                                    <span class="badge <?php echo $statusClass; ?>">
+                                        <i class="fas <?php echo $statusIcon; ?> mr-1"></i>
                                         <?php echo htmlspecialchars($app['status']); ?>
                                     </span>
-                                </p>
-                                <p><span>Applied on:</span> <?php echo date('d M Y', strtotime($app['applied_date'])); ?></p>
-                                <p><span>Salary:</span> ₹<?php echo number_format($app['salary']); ?>/year</p>
+                                </div>
                             </div>
                         </div>
-                        <div class="application-footer">
-                            <a href="job_details.php?id=<?php echo $app['jobID']; ?>" class="btn-view">View Job Details</a>
+                        <div class="job-card-footer">
+                            <a href="job_details.php?id=<?php echo $app['jobID']; ?>" class="btn btn-primary">
+                                <i class="fas fa-eye mr-1"></i> View Details
+                            </a>
                         </div>
                     </div>
                 <?php endforeach; ?>
             </div>
         <?php endif; ?>
     </div>
+
+    <script>
+        // Add animation when job cards enter the viewport
+        document.addEventListener("DOMContentLoaded", function() {
+            const jobCards = document.querySelectorAll('.job-card');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = "1";
+                        entry.target.style.transform = "translateY(0)";
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            jobCards.forEach((card, index) => {
+                card.style.opacity = "0";
+                card.style.transform = "translateY(20px)";
+                card.style.transition = "opacity 0.5s ease, transform 0.5s ease";
+                card.style.transitionDelay = (index * 0.1) + "s";
+                observer.observe(card);
+            });
+        });
+    </script>
 </body>
 
 </html>

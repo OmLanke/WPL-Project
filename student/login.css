@@ -5,77 +5,112 @@ html {
     box-sizing: border-box;
     height: 100%;
     font-family: "Poppins", sans-serif;
-    background: linear-gradient(to right, #00c6ff, #0072ff);
+    background: linear-gradient(135deg, #0072ff, #00c6ff);
     background-repeat: no-repeat;
     background-attachment: fixed;
     display: flex;
     align-items: center;
     justify-content: center;
 }
+
 .container {
     display: flex;
     align-items: center;
     justify-content: center;
     height: 100vh;
+    width: 100%;
+        padding: 15px;
 }
+
 .glass-card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 15px;
+    background: rgba(255, 255, 255, 0.15);
+        backdrop-filter: blur(12px);
+        -webkit-backdrop-filter: blur(12px);
+        border-radius: 16px;
     padding: 40px;
-    width: 320px;
-    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+    width: 350px;
+        box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
     text-align: center;
-    animation: fadeIn 1s ease-in-out;
+    animation: fadeIn 0.8s ease-in-out;
+        border: 1px solid rgba(255, 255, 255, 0.2);
 }
+
 .logo img {
-    width: 100px;
-    height: 100px;
+    width: 90px;
+        height: 90px;
     border-radius: 50%;
-    border: 3px solid #fff;
+    border: 3px solid rgba(255, 255, 255, 0.5);
+        box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease;
+}
+.logo img:hover {
+    transform: scale(1.05);
 }
 .title {
-    margin: 15px 0;
-    font-size: 22px;
+    margin: 20px 0;
+        font-size: 24px;
     font-weight: 600;
     color: #fff;
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
+
 form input,
 .sign-in-button {
     width: calc(100% - 24px);
-    padding: 12px;
-    margin: 10px auto;
+    padding: 14px;
+        margin: 12px auto;
     display: block;
     border: none;
-    border-radius: 25px;
+    border-radius: 30px;
     outline: none;
     background: rgba(255, 255, 255, 0.2);
     color: #fff;
     font-size: 16px;
     text-align: center;
+    transition: all 0.3s ease;
+        font-family: "Poppins", sans-serif;
+}
+form input:focus {
+    background: rgba(255, 255, 255, 0.25);
+    box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.1);
 }
 form input::placeholder {
     color: rgba(255, 255, 255, 0.7);
 }
+
 .sign-in-button {
     font-size: 18px;
-    font-weight: bold;
+    font-weight: 600;
     background: linear-gradient(to right, #ff416c, #ff4b2b);
     cursor: pointer;
-    transition: 0.3s;
+    transition: all 0.3s ease;
+        box-shadow: 0 4px 10px rgba(255, 75, 43, 0.3);
+        letter-spacing: 0.5px;
 }
+
 .sign-in-button:hover {
     background: linear-gradient(to right, #ff4b2b, #ff416c);
+    transform: translateY(-2px);
+        box-shadow: 0 6px 15px rgba(255, 75, 43, 0.4);
+}
+.sign-in-button:active {
+    transform: translateY(0);
 }
 .signup-text {
-    margin-top: 15px;
-    font-size: 14px;
-    color: #fff;
+    margin-top: 18px;
+        font-size: 15px;
+        color: rgba(255, 255, 255, 0.9);
 }
+
 .signup-text a {
     color: #ffdf00;
     text-decoration: none;
-    font-weight: bold;
+    font-weight: 600;
+        transition: all 0.3s ease;
+}
+.signup-text a:hover {
+    color: #fff;
+    text-shadow: 0 0 10px rgba(255, 223, 0, 0.5);
 }
 @keyframes fadeIn {
     from {
@@ -86,4 +121,28 @@ form input::placeholder {
         opacity: 1;
         transform: translateY(0);
     }
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 480px) {
+    .glass-card {
+        width: 100%;
+        padding: 30px 20px;
+    }
+
+    .title {
+        font-size: 22px;
+    }
+}
+
+/* Error message styling */
+.error {
+    color: #ff6b6b;
+    margin-top: 10px;
+    font-size: 14px;
+    background: rgba(255, 107, 107, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+    border-left: 3px solid #ff6b6b;
+    text-align: left;
 }
