@@ -44,7 +44,7 @@ switch ($activePage) {
         }
         
         nav {
-            background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+            background: var(--primary-color);
             box-shadow: var(--box-shadow);
             display: flex;
             align-items: center;
